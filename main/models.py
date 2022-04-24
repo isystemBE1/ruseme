@@ -1,9 +1,12 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Services(models.Model):
+    class Meta:
+        verbose_name = 'Service'
+        verbose_name_plural = 'Servislar'
+        ordering = ('-id', )
+
     icon = models.ImageField(upload_to='icon')
     profession = models.CharField(max_length=255)
     content = models.TextField()
@@ -19,10 +22,12 @@ class Category(models.Model):
         return self.category
 
 
-class Projects(models.Model):
-    image = models.ImageField(upload_to='projects')
-    category = models.ManyToManyField(Category, blank=True)
-    profession = models.CharField(max_length=255)
+class GetIntouch(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.profession
+        return self.name

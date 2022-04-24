@@ -40,9 +40,8 @@ INSTALLED_APPS = [
     
     # local app
     'posts',
-    'contact',
+    'main',
     'person',
-    'projects',
 ]
 
 MIDDLEWARE = [
