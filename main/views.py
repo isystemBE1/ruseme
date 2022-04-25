@@ -1,22 +1,15 @@
 from django.shortcuts import render
-from person.models import About, Partner
+from person.models import About, Partner, Resume
 from posts.models import Post
 from .forms import GetInTouchForm
+
 
 # Create your views here.
 
 
 def home_view(request):
-    obj = About.objects.order_by('-id')[:1]
-    partner = Partner.objects.all()
-    post = Post.objects.order_by('-id')
-    form = GetInTouchForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    resumes = Resume.objects.all()
     ctx = {
-        'objects': obj,
-        'partners': partner,
-        'posts': post,
-        'form': form
+        'resumes': resumes,
     }
     return render(request, 'index.html', ctx)

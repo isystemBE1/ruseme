@@ -1,13 +1,6 @@
 from django.db import models
 from main.models import Category
 
-TYPE = (
-    (0, 'Education'),
-    (1, 'Experience'),
-    (2, 'Skills'),
-    (3, 'Awards'),
-)
-
 
 class Partner(models.Model):
     image = models.ImageField(upload_to='icon')
@@ -31,28 +24,30 @@ class About(models.Model):
 
 
 class Resume(models.Model):
-    start_finish = models.CharField(max_length=255, null=True, blank=True)
-    type = models.IntegerField(choices=TYPE)
-    profession = models.CharField(max_length=255, null=True, blank=True)
-    academy = models.CharField(max_length=255, null=True, blank=True)
-    icon = models.ImageField(upload_to='icon', null=True, blank=True)
+    type = models.CharField(max_length=221)
     is_skill = models.BooleanField(default=False)
-    content = models.TextField(null=True, blank=True)
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        if self.profession:
-            return self.profession
+        if self.type:
+            return self.type
         return 'Skill'
 
 
-class Skill(models.Model):
+class AdditionalInfo(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
-    title = models.CharField(max_length=221)
-    percent = models.IntegerField()
 
-    def __str__(self):
-        return self.title
+    # experience
+    start_finish = models.CharField(max_length=255, null=True, blank=True)
+    profession = models.CharField(max_length=255, null=True, blank=True)
+    academy = models.CharField(max_length=255, null=True, blank=True)
+    icon = models.ImageField(upload_to='icon', null=True, blank=True)
+    content = models.TextField(null=True, blank=True)
+
+    # is skill
+    title = models.CharField(max_length=221, null=True, blank=True)
+    percent = models.IntegerField(null=True, blank=True)
+    is_main = models.BooleanField(default=False)
 
 
 class Projects(models.Model):

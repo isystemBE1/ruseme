@@ -1,21 +1,35 @@
 from django.contrib import admin
-from .models import About, Partner, Resume, Skill
+from .models import About, Partner, Resume, AdditionalInfo
+from django.forms import TextInput, Textarea
+from django.db import models
 
 
 class AboutAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'birth', 'zip_code')
 
 
-class SkillInline(admin.TabularInline):
-    model = Skill
+class AdditionalInfoInline(admin.StackedInline):
+    model = AdditionalInfo
+    # fields = (('start_finish', 'profession', 'academy'),  'icon', 'content', ('title', 'percent'))
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows': 2, 'cols': 40})},
+    }
+
+    fieldsets = (
+        (None, {
+            'fields': (('start_finish', 'profession', 'academy'),  ('icon', 'content'))
+        }),
+        ('Skill info', {
+            'fields': (('title', 'percent', 'is_main'), )
+        }),
+    )
     extra = 0
 
 
 class ResumeAdmin(admin.ModelAdmin):
-    inlines = [SkillInline]
-    list_display = ('id', 'start_finish', 'academy', 'profession', 'created_at')
-    list_filter = ('id', 'created_at')
-    search_fields = ('academy', 'profession')
+    inlines = [AdditionalInfoInline]
+    list_display = ('id', 'type', 'is_skill', 'created_at')
+    list_filter = ('is_skill', 'created_at')
 
 
 admin.site.register(About, AboutAdmin)
