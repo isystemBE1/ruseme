@@ -24,6 +24,7 @@ class About(models.Model):
     zip_code = models.IntegerField()
     email = models.EmailField()
     phone = models.CharField(max_length=255)
+    projects = models.IntegerField()
 
     def __str__(self):
         return self.name

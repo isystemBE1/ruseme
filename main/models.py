@@ -1,12 +1,7 @@
 from django.db import models
 
 
-class Services(models.Model):
-    class Meta:
-        verbose_name = 'Service'
-        verbose_name_plural = 'Servislar'
-        ordering = ('-id', )
-
+class Service(models.Model):
     icon = models.ImageField(upload_to='icon')
     profession = models.CharField(max_length=255)
     content = models.TextField()
@@ -22,7 +17,7 @@ class Category(models.Model):
         return self.category
 
 
-class GetIntouch(models.Model):
+class GetInTouch(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     subject = models.CharField(max_length=255)

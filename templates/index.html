@@ -27,12 +27,13 @@
 </section>
     <section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
     <div class="container">
-        <div class="row d-flex no-gutters">
+        {% for object in objects %}
+            <div class="row d-flex no-gutters">
             <div class="col-md-6 col-lg-6 d-flex">
                 <div class="img-about img d-flex align-items-stretch">
                     <div class="overlay"></div>
                     <div class="img d-flex align-self-stretch align-items-center"
-                         style="background-image:url({% static 'images/xabout.jpg.pagespeed.ic.Vai-uW21Kd.jpg' %})">
+                         style="background-image:url({{ object.image.url }})">
                     </div>
                 </div>
             </div>
@@ -44,22 +45,21 @@
                         <p>A small river named Duden flows by their place and supplies it with the necessary
                             regelialia.</p>
                         <ul class="about-info mt-4 px-md-0 px-2">
-                            <li class="d-flex"><span>Name:</span> <span>Ronaldo Fredrickson</span></li>
-                            <li class="d-flex"><span>Date of birth:</span> <span>November 28, 1989</span></li>
-                            <li class="d-flex"><span>Address:</span> <span>San Francisco CA 97987 USA</span></li>
-                            <li class="d-flex"><span>Zip code:</span> <span>1000</span></li>
-                            <li class="d-flex"><span>Email:</span> <span><a
-                                    href="https://preview.colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__"
+                            <li class="d-flex"><span>Name:</span> <span>{{ object.name }}</span></li>
+                            <li class="d-flex"><span>Date of birth:</span> <span>{{ object.birth }}</span></li>
+                            <li class="d-flex"><span>Address:</span> <span>{{ object.live }}</span></li>
+                            <li class="d-flex"><span>Zip code:</span> <span>{{ object.zip_code }}</span></li>
+                            <li class="d-flex"><span>Email:</span>{{ object.email }}<span><a href="#" class="__cf_email__"
                                     data-cfemail="7f0d10111e131b103f18121e1613511c1012">[email&#160;protected]</a></span>
                             </li>
-                            <li class="d-flex"><span>Phone: </span> <span>+1-2234-5678-9-0</span></li>
+                            <li class="d-flex"><span>Phone: </span> <span>{{ object.phone }}</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="counter-wrap ftco-animate d-flex mt-md-3">
                     <div class="text">
                         <p class="mb-4">
-                            <span class="number" data-number="120">0</span>
+                            <span class="number" data-number="{{ object.projects }}">0</span>
                             <span>Project complete</span>
                         </p>
                         <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
@@ -67,39 +67,25 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </section>
     <section class="ftco-section ftco-partner">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="{% static 'images/xpartner-1.png.pagespeed.ic.RHSia-jQRH.png' %}"
-                                                 class="img-fluid" alt="Colorlib Template"></a>
-            </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="{% static 'images/xpartner-2.png.pagespeed.ic.H3qolt-W2X.png' %}"
-                                                 class="img-fluid" alt="Colorlib Template"></a>
-            </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="{% static 'images/xpartner-3.png.pagespeed.ic.dC-W4WLFT0.png' %}"
-                                                 class="img-fluid" alt="Colorlib Template"></a>
-            </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="{% static 'images/xpartner-4.png.pagespeed.ic.sLtytF9G9z.png' %}"
-                                                 class="img-fluid" alt="Colorlib Template"></a>
-            </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="{% static 'images/xpartner-5.png.pagespeed.ic.tcQzKAf5Lc.png' %}"
-                                                 class="img-fluid" alt="Colorlib Template"></a>
+        <div class="container">
+            <div class="row">
+                {% for partner in partners %}
+                    <div class="col-sm ftco-animate">
+                        <a href="#" class="partner"><img src="{{ partner.image.url }}" class="img-fluid" alt="Colorlib Template"></a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-    </div>
-</section>
+    </section>
     <section class="ftco-section ftco-no-pb goto-here" id="resume-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <nav id="navi">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <nav id="navi">
                     <ul>
                         <li><a href="#page-1">Education</a></li>
                         <li><a href="#page-2">Experience</a></li>
@@ -107,15 +93,15 @@
                         <li><a href="#page-4">Awards</a></li>
                     </ul>
                 </nav>
-            </div>
-            <div class="col-md-9">
-                <div id="page-1" class="page one">
-                    <h2 class="heading">Education</h2>
-                    <div class="resume-wrap d-flex ftco-animate">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="flaticon-ideas"></span>
-                        </div>
-                        <div class="text pl-3">
+                </div>
+                <div class="col-md-9">
+                    <div id="page-1" class="page one">
+                        <h2 class="heading">Education</h2>
+                        <div class="resume-wrap d-flex ftco-animate">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-ideas"></span>
+                            </div>
+                            <div class="text pl-3">
                             <span class="date">2014-2015</span>
                             <h2>Bachelor of Science in Computer Science</h2>
                             <span class="position">Cambridge University</span>
@@ -123,48 +109,48 @@
                                 regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
                                 your mouth.</p>
                         </div>
+                        </div>
+                        <div class="resume-wrap d-flex ftco-animate">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-ideas"></span>
+                            </div>
+                            <div class="text pl-3">
+                                <span class="date">2014-2015</span>
+                                <h2>Computer Processing Systems/Computer Software</h2>
+                                <span class="position">Cambridge University</span>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
+                                    your mouth.</p>
+                            </div>
+                        </div>
+                        <div class="resume-wrap d-flex ftco-animate">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-ideas"></span>
+                            </div>
+                            <div class="text pl-3">
+                                <span class="date">2014-2015</span>
+                                <h2>Diploma in Computer</h2>
+                                <span class="position">Cambridge University</span>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
+                                    your mouth.</p>
+                            </div>
+                        </div>
+                        <div class="resume-wrap d-flex ftco-animate">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-ideas"></span>
+                            </div>
+                            <div class="text pl-3">
+                                <span class="date">2014-2015</span>
+                                <h2>Art &amp; Creative Director</h2>
+                                <span class="position">Cambridge University</span>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
+                                    your mouth.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="resume-wrap d-flex ftco-animate">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="flaticon-ideas"></span>
-                        </div>
-                        <div class="text pl-3">
-                            <span class="date">2014-2015</span>
-                            <h2>Computer Processing Systems/Computer Software</h2>
-                            <span class="position">Cambridge University</span>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
-                                your mouth.</p>
-                        </div>
-                    </div>
-                    <div class="resume-wrap d-flex ftco-animate">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="flaticon-ideas"></span>
-                        </div>
-                        <div class="text pl-3">
-                            <span class="date">2014-2015</span>
-                            <h2>Diploma in Computer</h2>
-                            <span class="position">Cambridge University</span>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
-                                your mouth.</p>
-                        </div>
-                    </div>
-                    <div class="resume-wrap d-flex ftco-animate">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="flaticon-ideas"></span>
-                        </div>
-                        <div class="text pl-3">
-                            <span class="date">2014-2015</span>
-                            <h2>Art &amp; Creative Director</h2>
-                            <span class="position">Cambridge University</span>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
-                                your mouth.</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="page-2" class="page two">
+                    <div id="page-2" class="page two">
                     <h2 class="heading">Experience</h2>
                     <div class="resume-wrap d-flex ftco-animate">
                         <div class="icon d-flex align-items-center justify-content-center">
@@ -245,7 +231,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="page-3" class="page three">
+                    <div id="page-3" class="page three">
                     <h2 class="heading">Skills</h2>
                     <div class="row progress-circle mb-5">
                         <div class="col-lg-4 mb-4">
@@ -408,7 +394,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="page-4" class="page four">
+                    <div id="page-4" class="page four">
                     <h2 class="heading">Awards</h2>
                     <div class="resume-wrap d-flex ftco-animate">
                         <div class="icon d-flex align-items-center justify-content-center">
@@ -463,10 +449,10 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
     <section class="ftco-section" id="services-section">
     <div class="container-fluid px-md-5">
         <div class="row justify-content-center py-5 mt-5">
@@ -673,69 +659,30 @@
             </div>
         </div>
         <div class="row d-flex">
-            <div class="col-md-4 d-flex ftco-animate">
+            {% for post in posts %}
+                <div class="col-md-4 d-flex ftco-animate">
                 <div class="blog-entry justify-content-end">
-                    <a href="../single.html" class="block-20"
-                       style="background-image:url({% static 'images/ximage_1.jpg.pagespeed.ic.ChFFLH463E.jpg' %})">
+                    <a href="posts/single/{{ post.slug }}/" class="block-20"
+                       style="background-image:url({{ post.image.url }})">
                     </a>
                     <div class="text mt-3 float-right d-block">
-                        <h3 class="heading"><a href="../single.html">Why Lead Generation is Key for Business Growth</a>
+                        <h3 class="heading"><a href="single.html">{{ post.title }}</a>
                         </h3>
                         <div class="d-flex align-items-center mb-3 meta">
                             <p class="mb-0">
-                                <span class="mr-2">Sept. 12, 2019</span>
-                                <a href="#" class="mr-2">Admin</a>
-                                <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                                <span class="mr-2">{{ post.created_at }}</span>
+                                <a href="#" class="mr-2">{{ post.author }}</a>
+                                <a href="#" class="meta-chat"><span class="icon-chat"></span> {{ post.comment_set.count }}</a>
                             </p>
                         </div>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia.</p>
+                        <p>{{ post.content|slice:100 }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                    <a href="../single.html" class="block-20"
-                       style="background-image:url({% static 'images/ximage_2.jpg.pagespeed.ic.mmfQD6ZG2H.jpg' %})">
-                    </a>
-                    <div class="text mt-3 float-right d-block">
-                        <h3 class="heading"><a href="../single.html">Why Lead Generation is Key for Business Growth</a>
-                        </h3>
-                        <div class="d-flex align-items-center mb-3 meta">
-                            <p class="mb-0">
-                                <span class="mr-2">Sept. 12, 2019</span>
-                                <a href="#" class="mr-2">Admin</a>
-                                <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                            </p>
-                        </div>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="../single.html" class="block-20"
-                       style="background-image:url({% static 'images/ximage_3.jpg.pagespeed.ic.TRCHucgaea.jpg' %})">
-                    </a>
-                    <div class="text mt-3 float-right d-block">
-                        <h3 class="heading"><a href="../single.html">Why Lead Generation is Key for Business Growth</a>
-                        </h3>
-                        <div class="d-flex align-items-center mb-3 meta">
-                            <p class="mb-0">
-                                <span class="mr-2">Sept. 12, 2019</span>
-                                <a href="#" class="mr-2">Admin</a>
-                                <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                            </p>
-                        </div>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia.</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
-</section>
+    </section>
     <section class="ftco-section ftco-hireme img"
          style="background-image:url({% static 'images/xbg_1.jpg.pagespeed.ic.snCMAsuwMa.jpg' %})">
     <div class="overlay"></div>
@@ -748,7 +695,7 @@
             </div>
         </div>
     </div>
-</section>
+    </section>
     <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
@@ -809,19 +756,19 @@
         </div>
         <div class="row no-gutters block-9">
             <div class="col-md-6 order-md-last d-flex">
-                <form action="#" class="bg-light p-4 p-md-5 contact-form">
+                <form method="post" class="bg-light p-4 p-md-5 contact-form">
+                    {% csrf_token %}
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                        {{ form.name }}
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Email">
+                        {{ form.email }}
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subject">
+                        {{ form.subject }}
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control"
-                                  placeholder="Message"></textarea>
+                        {{ form.message }}
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
@@ -833,6 +780,6 @@
             </div>
         </div>
     </div>
-</section>
+    </section>
 
 {% endblock %}
